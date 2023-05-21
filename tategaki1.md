@@ -1,11 +1,10 @@
 # 初めてのウェブサービスに縦書きエディタを選んだ理由
 # 1.はじめに
-　初めまして。55歳を過ぎてWebの勉強を始め、このほど初めてウェブサービスを公開しました。開発したのは、ブラウザ上の原稿用紙とでもいいましょうか、[縦書きエディタ](https://www.sakubun.tokyo)です。
+　初めまして。55歳を過ぎてWebの勉強を始め、このほど初めてウェブサービスをデプロイしました。開発したのは、ブラウザ上の原稿用紙とでもいいましょうか、[縦書きエディタ](https://www.sakubun.tokyo)です。
 ![sakubun動画.gif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/2779438/622d6577-0bfa-3b58-4010-95c71368b059.gif)
 
 https://www.sakubun.tokyo/
-  
-  produced by K.Hyodo
+
 # 2.なぜ縦書きエディタ？
 　なぜ縦書きエディタかというと、GIGAスクールが関係しています。
 
