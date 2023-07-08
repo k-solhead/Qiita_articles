@@ -2,7 +2,8 @@
 参照  
 [【GitHub入門】Webアプリを作りながらGitHub開発フローを習得してみよう](https://www.youtube.com/watch?v=cOTBf8bHsXo)  
 [【GitHub入門】初心者向け！GitHubでチーム開発するための基本操作を解説！](https://www.youtube.com/watch?v=Dz95iUNt-fg)
-
+<br><br><br><br>
+# <リモート、ローカルともまったくのゼロから始める場合>
 ## 1.リモートリポジトリの作成
   
 ①　Githubの右上「＋」―「New Repositry」―「Create a new repository」
@@ -11,7 +12,8 @@
 
 ③　PublicかPrivateを選択
 
-④　ボタン「Create repository」を押し、空のリモートリポジトリを作成
+④　ボタン「Create repository」を押し、空のリモートリポジトリを作成する。  
+　　後で「Quick setup」のURLをコピーするため、そのまま開いておく。
 
 ⑤　VSCのターミナル（Git Bash）を起動し、ローカルリポジトリを置くディレクトリ（の親ディレクトリ）に移動
 
@@ -41,7 +43,7 @@
 ## 3.プルリクをする
 
 ①　ステージに上げる  
-　　ターミナルで`git add *`か`git add .`を実行する
+　　ターミナルで　`git add *`　か　`git add .`　か　`git add -A` を実行する
 
 ②　コミットする  
 　　ターミナルで`git commit -m "completed base"`を実行する
@@ -63,11 +65,53 @@
 
 ## 5.ローカルの作業用ブランチを削除する
 
-①　先ほど削除したのはリモートの作業用ブランチなので、今度はVSCに戻り、ローカルの作業用ブランチを削除する。  
-　　VSCのターミナルに`git checkout main`でメインブランチに移動し`git branch`で移動を確認する。
+①　先ほど削除したのはリモートの作業用ブランチなので、今度はVSCに戻り、ローカルの作業用ブランチを削除する。VSCのターミナルに`git checkout main`でメインブランチに移動し`git branch`で移動を確認する。
 
-②　`git branch -D 削除するブランチ名`で作業用ブランチを削除する。`git branch`で削除を確認する。
+②　`git branch -D <削除するブランチ名>`で作業用ブランチを削除する。`git branch`で削除を確認する。
 
 ## 6.mainブランチをローカルにプルする
 
-①　作業用ブランチを削除したローカルの作業用ディレクトリには何もない状態になるので、リモートからマージしたメインブランチをローカルに引っ張ってくるため、VSCのターミナルに`git pull origin main`を
+①　作業用ブランチを削除したローカルの作業用ディレクトリには何もない状態になるので、ターミナルに`git pull origin main`と打ち込み、リモートからマージしたメインブランチをローカルに引っ張ってくる。
+<br><br><br><br><br>
+# ＜すでにPCにあるコードをGitHub上で管理したい場合＞
+## 1.リモートリポジトリの作成
+  
+①　Githubの右上「＋」―「New Repositry」―「Create a new repository」
+
+②　「Repository name」にリポジトリの名前をつける。
+
+③　PublicかPrivateを選択
+
+④　ボタン「Create repository」を押し、空のリモートリポジトリを作成  
+　　後で「Quick setup」のURLをコピーするため、そのまま開いておく。
+
+## 2.ローカルリポジトリの作成
+
+⑤　VSCのターミナル（Git Bash）を起動し、コードを記述したファイルのあるディレクトリに移動
+
+⑥　`git init`を打ち込み、ローカルリポジトリを作成する
+
+⑦　`git add *`　か　`git add .`　か　`git add -A` を実行する
+
+⑧　`git commit -m "＜コメント＞"`を実行する
+
+## 3.ローカルリポジトリをリモートリポジトリにひもづける
+
+①　Github上の「Quick setup」のURLをコピーし、ターミナルに`git remote add origin <URL>`を打ち込みリモートのURLをoriginにひもづける
+
+②　`git push origin main`でリモートにアップロードする
+
+<br><br><br><br>
+
+# ＜GitHub上のコードをダウンロードして編集したい場合＞
+
+## 1.リモートリポジトリからダウンロードする
+
+①　VSCのターミナル（Git Bash）を起動し、ダウンロードしたいローカルのディレクトリに移動
+
+②　GitHubのリモートリポジトリの緑色の「code」ボタンを押してURLをコピー
+
+③　念のためリモートリポジトリのデフォルトのブランチがmainかどうか確認する  
+　　「Settings」ボタンを押し、左欄の「Branches」を選ぶと「Default branch」を確認できる
+
+③　ターミナルに`git close ＜URL＞`を打ち込み実行するとダウンロードされ、ひもづけも完了する
