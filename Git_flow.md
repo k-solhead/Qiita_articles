@@ -118,10 +118,59 @@
 <br><br><br><br>
 # ＜ブランチの運用＞
 
+## 1.要点
+
 ▽mainブランチが一つと機能ごとに作られた複数のfeatureブランチで構成したモデルとする
 
 ▽mainブランチはプロダクトしてリリースするためのブランチ
 
-▽重要なのはリモートのmainブランチが正式版。ローカルのmainブランチは勝手にリモートのmainと同期されない。新しいbranchを切る時は必ずローカルのmainブランチがリモートのmainブランチと同じ、つまり最新状態になっているか確認し、なっていなければpullで最新にする。
+▽重要なのはリモートのmainブランチが正式版。ローカルのmainブランチは勝手にリモートのmainと同期されない。新しいブランチを切る時は必ずローカルのmainブランチがリモートのmainブランチと同じ、つまり最新状態になっているか確認し、なっていなければpullで最新にしてからブランチを切る。
 
-▽featureブランチは
+▽featureブランチは１ブランチにつき、１機能の開発、１つのバグ修正など１つの区切りよく開発できる単位で作る。
+
+▽編集の履歴として残しておきたいタイミングで細目にコミットしていき、リモートのfeatureブランチにpushする。この時、リモートとローカルのfeatureブランチの名前を同じにする。
+
+▽pushはコミットよりもう少し区切りのよいタイミングで実施する
+
+## 2.コンフリクトが起きた場合
+
+![](conflict.png)
+
+①　プルリクエストの際、「This branch has conflicts that must be resolved」（コンフリクトが起きている）とメッセージが出たら、安全のため、ウェブ上ではコンフリクトを解消しない。
+
+②　作業するブランチをmainに切り替える  
+　　VSCのターミナル（Git Bash）で`git checkout main`を打ち込む
+
+③　ローカルのmainブランチを最新にする  
+　　`git pull origin main`を打ち込み、mainブランチを更新
+
+③　featureブランチに切り替える  
+　　`git checkout feature....`でfeature....ブランチに切り替え
+
+⑤　feature...ブランチに対してmainブランチをマージ（リモートでのマージと逆なので注意）  
+　　`git merge main`でマージ
+
+⑥　コンフリクトを解消する
+
+⑦　`git add`、`git commit`、`git push`をする  
+　　`git add -A` をして `git commit -m "fix conflict"` をして　`git push origin feature....`　をする
+
+⑧　Github上でプルリクエストをする  
+　　リモートリポジトリでpushを確認し、「Compare & pull request」ボタンを押す  
+　　タイトルと内容を書き込み「Create pull request」ボタンを押す
+
+⑨　レビューし、マージする  
+　　上部の「Files changed」タブを押してコードの編集状況を確認する。
+
+⑩　OKなら上部の「Conversation」タブを押して表紙に戻り、「Write」欄に「実装お疲れさまでした」などのコメントを入れて、「Comment」ボタンを押して確定した後、「Merge pull request」ボタンを押す。さらに「Confirm merge」ボタンを押す。mainブランチに作業用ブランチを合体させることができた。
+
+⑪　マージできたら「Pull request successfully merged and closed」という欄に「Delete branch」のボタンが出るので、押して作業用ブランチを削除しておく。
+
+⑫　ローカルの作業用ブランチを削除する  
+　　先ほど削除したのはリモートの作業用ブランチなので、今度はVSCに戻り、ローカルの作業用ブランチを削除する。  
+　　VSCのターミナルに`git checkout main`でメインブランチに移動し`git branch`で移動を確認する。
+
+⑬　`git branch -D <削除するブランチ名>`で作業用ブランチを削除する。`git branch`で削除を確認する。
+
+⑭　mainブランチをローカルにプルする  
+　　作業用ブランチを削除したローカルの作業用ディレクトリには何もない状態になるので、ターミナルに`git pull origin main`と打ち込み、リモートからマージしたメインブランチをローカルに引っ張ってくる。
