@@ -29,7 +29,8 @@
 　　ターミナルで`git branch`を実行し、mainブランチにいることを確認する
 
 ②　新たに作業用のブランチを切る  
-　　ターミナルで`git branch base`を実行し、baseブランチを作成する
+　　ターミナルで`git branch base`を実行し、baseブランチを作成する  
+　　（`git checkout -b base`を実行してブランチの作成と切り替えを一気に行うことも可能。その場合③の作業は不要に）
 
 ③　作業用ブランチに移動する  
 　　ターミナルで`git checkout base`を実行し、baseブランチに切り替える
